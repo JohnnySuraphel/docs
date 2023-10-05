@@ -1,0 +1,159 @@
+## Requirements
+
+To deploy the RAAD installer, you will need:
+
+
+
+* A Debian based system or as Windows 10 system with WSL having at least 4GB of RAM and 20GB of free disk space
+* Root privileges on the system
+* The RAAD installer package
+* Chrome or Firefox web browser installed
+
+
+## Windows
+
+RAAD’s installer can be installed on Windows 10 or later devices via the Windows Subsystem for Linux.
+
+### WSL Installation 
+
+**What is WSL?**
+
+WSL, or Windows Subsystem for Linux, is a feature of Windows 10 and 11 that allows you to run Linux distributions on your Windows computer. This means that you can use all of the Linux tools and commands that you are familiar with, without having to switch to a different operating system.
+
+
+    The following will install Ubuntu on your Windows 10 system.
+
+
+
+1. Windows Terminal is built into Windows 11. Windows 10 users need to [download it from the Microsoft Store](https://apps.microsoft.com/store/detail/windows-terminal/9N0DX20HK701) and install it. Once it’s installed, you can use one of these methods to run Windows Terminal:
+*  Press _Windows key + R_ to open the Run window, then type **cmd** and click OK.
+
+
+![alt_text](https://lh6.googleusercontent.com/spkjTtC4WqOrwf61RNbDqTW9OuS9MONO4bPq7mNK_V4poAdc6m0Lzc5TdSkLJH9MTg4pjhiBVUTo4XbDSfQW69haR4m2HW3ZB5aY_4DEqEF92_-eeYAzlSgSdY_42PU1UVGMYc4M4HGzxXBLL0Mrzfg)
+
+
+* In Windows Search, search for terminal and select Windows Terminal from the search results. To run the app with administrator permissions, right-click Windows Terminal in the search results and select Run as administrator.
+
+
+![alt_text](https://lh4.googleusercontent.com/n733-QO0QB4Epvsjt5wba1jw3rlQ2N2mxANR6Di8mZJZbhBeuPMNJ3RMhwQubPlRVO6kyQFw1lbgEpRoZzrPH1KwKNSSDiQ7YQ1YgW-_HP8rjmIIKzpKqh9EYFLAWWQimBNl9Iz879gExkQqXbl_HUA)
+
+
+
+    You will be presented with the following window:
+
+
+![alt_text](https://lh4.googleusercontent.com/QwM4mQPkCINHx5PN1Kyf4QfKue1M-6bo_ADt7ItiLPX175iRf8s8byz6AkpKuRiCgDe5ufbYOQYorXLZubmCVHg1gB5PiqvjzMeXTic5C6OaDEj6f9Ma6gM3gKSf7fEb_S4qeD-IxoBrletxgJK8oDE)
+
+
+2. Install WSL command
+
+    To do this paste  `wsl --install` on the command prompt opened on step one and press `enter`
+
+
+    Check [https://learn.microsoft.com/en-us/windows/wsl/install](https://learn.microsoft.com/en-us/windows/wsl/install) for more information
+**To install RAAD on WSL and Ubuntu, follow these steps:**
+
+
+
+3. Download the [RAAD installer package](https://uat.raad.moh.gov.so/download/raad-installer.deb). You now can find a file called `raad-installer.deb` inside your Downloads folder. 
+4. Go to the command prompt then paste `cd C:\Users<machine-user>\Downloads`. * Replace `&lt;machine-user>` with the actual username of your windows user. Then press Enter.
+5.  Paste and run the following command to install RAAD:
+
+`
+sudo dpkg -i raad-installer.deb
+`
+
+
+6. The installer will install the selected RAAD modules and all of the necessary dependencies.
+7. Once the installation is complete, you can start RAAD by running the following command on the command prompt window:
+
+`
+sudo systemctl start RAAD
+`
+
+
+8. Once the installation is complete, Inside your command prompt and start RAAD by running the following inside your command prompt:
+
+`
+sudo systemctl enable RAAD
+sudo systemctl start RAAD
+`
+
+    Then check if the service is running in your terminal: 
+
+
+`
+sudo systemctl status RAAD
+`
+
+
+
+    You should see something like:
+
+
+```
+● RAAD.service - RAAD daemon
+     Loaded: loaded (/etc/systemd/system/RAAD.service; enabled; vendor preset: enabled)
+     Active: active (running)
+TriggeredBy: ● RAAD.socket
+```
+
+
+
+
+### Post-Installation Steps
+
+Once RAAD is installed, you will need to complete the following steps:
+
+
+
+1. Configure RAAD by following the steps in the RAAD documentation.
+* Open your command prompt like in the above section and run the command `cd /opt/openmrs`
+* Then run `./configure_facility.sh`. This will prompt you with facility information to be set. Answer the following prompts with the correct information then configuration will be downloaded and set
+
+
+![alt_text](https://lh3.googleusercontent.com/iEZgVorQUNYwjHdZVXTKUH1nKKhYzb-pYqju75MCwz7YEtUBlPSZ4rRCgXrLgyJWDiHg0MrGUnwP5AeHBz3s7EQfWR1R-uZ8TygOtqFrJ1_OPuUbgY-geo0Pjcg3g4IA01cdZohK1PyA6tvGDQIOOeY)
+
+
+2. Create user accounts for your users.
+3. Train your users on how to use RAAD.
+
+
+### Additional Information
+
+
+
+* The RAAD installer is currently only available for Debian-based systems.
+* The RAAD installer will install RAAD in the /opt/RAAD directory.
+* You can upgrade RAAD to a newer version by running the RAAD installer again.
+* You can uninstall RAAD by pasting and running the following inside your command prompt:
+
+```
+sudo dpkg -r RAAD-installer
+```
+
+For more information on installing and using RAAD, please refer to the RAAD documentation.
+
+
+## Access the Application
+
+Open your browser (Chrome or Firefox) and access the following applications *replace &lt;machine-ip> with localhost if you are running RAAD on a local machine. And use the following credentials:
+
+
+
+|                 |                                 |                   |
+| :-------------: | :-----------------------------: | :---------------: |
+| **Application** |             **URL**             |  **Credentials**  |
+|   RAAD EMR UI   |   https\://\<machine-ip>/home   | superman/Admin123 |
+|     RAAD Lab    | https\://\<machine-ip>/openelis | admin/adminADMIN! |
+
+
+**RAAD EMR UI**
+
+![alt_text](https://lh5.googleusercontent.com/-ZZCHf9ZlKt1Wvmm1PdThh2SR5OuZy11GMNB9SirCfMj4hwaqgbZX_MNhlrFDxKjClSb7Lf-pPCEcZBNY1IOJBlwBZNy67qJOTnNNR2HyWDh4uvS7nX8C2AyW1YvYvCfszzwGHIoY1jMVj5j5lqObjw)
+
+
+**RAAD Lab (OpenELIS)**
+
+
+![alt_text](https://lh4.googleusercontent.com/6SB5I9wvM6Rqi56A72513-X1K2tpxJ3OPZ6G1hfZrj6zteArKnLr2cAvctjgYUtC_RV64fLCy5yQExGNLx9xE0r-w-ppeGsvVPpJuPauBSOBkTHSIlWlMrm19ebtTTLezeEjvI7962hCxZfL4QZUYf0)
