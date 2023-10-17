@@ -37,19 +37,7 @@ RAAD can be install with simple steps using the installer package.
 
 There are two approachs to install RAAD the following are:
 
-### 1. WSL Installation 
-
-**What is WSL?**
-
-WSL, or Windows Subsystem for Linux, is a feature of Windows 10 and 11 that allows you to run Linux distributions on your Windows computer. This means that you can use all of the Linux tools and commands that you are familiar with, without having to switch to a different operating system.
-
-    To do this paste  `wsl --install` on the command prompt opened on step one and press `enter`
-
-
-    Check [https://learn.microsoft.com/en-us/windows/wsl/install](https://learn.microsoft.com/en-us/windows/wsl/install) for more information
-**To install RAAD on WSL and Ubuntu, follow these steps:**
-
-### 2. Remote Installation 
+### Ubuntu Installation 
 
 - Within the terminal, enter the following command, replacing [username] with the username of the remote user and [ip-address] with the IP address or domain name of the remote server.
 
@@ -81,6 +69,29 @@ Once you have successfully connected, your terminal should be using the remote s
 `
 curl -k https://uat.raad.moh.gov.so/download/install-raad.sh | sudo bash
 `
+
+### Upgrading RAAD
+
+RAAD can be upgraded to the newest version using the following simple steps.
+
+1. Open terminal and install `raad-updater` with the follwing command
+
+`
+curl -k https://uat.raad.moh.gov.so/download/install-updater | sudo bash
+`
+
+2. Update using `raad-update` command
+
+`
+sudo /opt/ehr_docker/bin/raad-update
+`
+
+3. Finally upgrade using `raad-upgrade` command
+
+`
+/opt/ehr_docker/bin/raad-upgrade
+`
+
 
 ### Initialization time
 
