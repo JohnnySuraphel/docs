@@ -47,28 +47,31 @@ Once you have successfully connected, your terminal should be using the remote s
 curl -k https://uat.raad.moh.gov.so/2gv7o-l2e4q/download/install-raad.sh | sudo bash
 `
 
+When prompted with a github token like the following:
+
+`
+Password for 'https://GitHubUser@github.com':
+`
+
+Paste `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` and press enter
+
 ### Upgrading RAAD
 
 RAAD can be upgraded to the newest version using the following simple steps.
 
-1. Open terminal and install `raad-updater` with the follwing command
+- Update using `raad-update` command
 
 `
-curl -k https://uat.raad.moh.gov.so/2gv7o-l2e4q/download/install-updater | sudo bash
+sudo bash /opt/ehr_docker/bin/raad-update
 `
 
-2. Update using `raad-update` command
+- When prompted with a github token like the following:
 
 `
-sudo /opt/ehr_docker/bin/raad-update
+Password for 'https://GitHubUser@github.com':
 `
 
-3. Finally upgrade using `raad-upgrade` command
-
-`
-/opt/ehr_docker/bin/raad-upgrade
-`
-
+Paste `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` and press enter
 
 ### Initialization time
 
