@@ -40,6 +40,13 @@ Warning: Permanently added 'example' (ECDSA) to the list of known hosts.
 
 Once you have successfully connected, your terminal should be using the remote shell environment for the server. Your command prompt should now show the username and hostname configured for the server. You can now run any commands that you have available on that server. This includes many of the basic Linux commands, such as ls, cd, rm, and those covered in Using the Terminal guide. Getting to know these commands will help you navigate around your server.
 
+#### Install curl command to fetch installer with the following command:
+
+
+`
+sudo apt-get update && sudo apt-get install curl
+`
+
 
 ### Finally all you need to get up and running is to execute the following:
 
@@ -89,8 +96,24 @@ Once RAAD is installed, you will need to complete the following steps:
     ![alt-text](images/image23.png)
     - After you've filled in all the necessary informations hit `save and continue`
     ![alt-text](images/image24.png)
-2. Create user accounts for your users.
-3. Train your users on how to use RAAD.
+2. Rebuild search index ** Note wait for initialization to finish
+    - To do that first go to `https://<machine-ip/localhost>/openmrs/` And login with the credentions on `Access the application` section. Then navigate to `admin`
+
+    ![alt-text](images/image25.png)
+
+    - Scroll down and navigate to `Search Index` 
+
+    ![alt-text](images/image26.png)
+
+    - Click `Rebuild Search Index` Button and wait for it to finish.
+
+    ![alt-text](images/image27.png)
+
+    - After its finish you should see the following page
+
+    ![alt-text](images/image28.png)
+3. Create user accounts for your users.
+4. Train your users on how to use RAAD.
 
 
 ## Access the Application
