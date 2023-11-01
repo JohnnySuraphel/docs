@@ -24,6 +24,15 @@ To go ahead we will need to update RAAD with running the following command `sudo
 
         - Now remote backup sync will be automatically activated
 
+### Retrive Remote Backup
+1. Get Facility uuid. To do that run the command `mysql -u root -p'<password>' -D openmrs --port=3307 --host=0.0.0.0 -e "SELECT property_value FROM global_property WHERE property='facility.uuid'"`. You will get a result similiar to the following:
+                
+                `7d9fb5e2-2850-4e84-ad17-6ee50a3f58e6`
+
+2. Retrive the backup file with the following command:
+
+                `azcopy copy "https://raadstoragebackup.blob.core.windows.net/raad-backup/<UUID>_backup.gz?<AZURE-TOKEN>" "<destination-path>"`
+        
 ### Manual and Automatic backup
 
 1. Manual Backup
