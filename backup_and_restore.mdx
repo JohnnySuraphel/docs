@@ -1,0 +1,72 @@
+
+## Backup and Restore Architecture
+
+RAAD backup and and restore is an implementation to routinely keep backups of all modules' Databases and store both locally and automatically sync to a remote storage.
+
+### Local Backup
+Local backup and restore is the process of creating and storing backups on local storage. This is done through taking a full backup everyday to able to restore from any timeline.
+
+### Remote Backup Sync
+Remote backup sync is an implementation to automatically sync backups to a remote storage with Facility ID. This can be extremely resourcesful in the case of local disk corruption.
+
+## User Guide
+
+This is a detailed guide on how to backup databases both manually and automatic. And a step by step guide on how to restore backups. 
+
+To go ahead we will need to update RAAD with running the following command `sudo bash /opt/ehr_docker/bin/raad-update`. 
+
+### Configure Remote Backup Sync
+1. Run the script to configure remote storage authentication
+        
+        `sudo bash /opt/ehr_docker/bin/configure-online-backup`
+
+2. You will be prompted with the following `Please enter the Azure token key:`. Paste the Azure token key provided and hit `enter`
+
+        - Now remote backup sync will be automatically activated
+
+### Manual and Automatic backup
+
+1. Manual Backup
+Manual backup can be easily done with running the command `sudo bash /opt/ehr_backup/bin/manual_backup` and can be found in `/opt/backups`
+
+2. Automatic Backup
+Automatic backup are done routinely full backup every day and can be accessed in `/opt/backups`
+Restoring backup. 
+
+        - Note: Replace all `<date_and_time>` with the corresponding date and time of the backup you want to restore
+
+1. CD into backup dir
+
+        `
+        cd /opt/backups	
+        `
+
+2. Decompress the .GZ dump:
+
+        `
+        sudo gunzip db_backup_<date_and_time>.gz
+        `
+
+        `
+        sudo gunzip openelis_db_backup_<date_and_time>.gz
+        `
+
+3. Restore the dump into the MySQL database. Replace `<password>` with mysql root password: 
+
+        - Note: Use the decompressed backup file instead of the original .gz file
+
+        `
+        cat db_backup_<date_and_time> | sudo docker exec -i docker_compose-openmrsdb-1 mysql -u root -D openmrs -p'<password>'
+        `
+
+        `
+        cat openelis_db_backup_<date_and_time> | sudo docker exec -i docker_compose-openelisdb-1 psql -Uclinlims clinlims
+        `
+
+4. Restart the MySQL Docker container:
+
+        `
+        sudo docker restart $(sudo docker ps -aq)
+        `
+
+5. Wait for initialization to finish. This might take 5-15 minutes depending thee resource of machine

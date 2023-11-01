@@ -21,7 +21,7 @@
   "navigation": [
     {
       "group": "Get Started",
-      "pages": ["introduction", "architecture", "deployment", "user_guide"]
+      "pages": ["introduction", "architecture", "deployment", "user_guide", "backup_and_restore"]
     }
   ],
   "footerSocials": {
