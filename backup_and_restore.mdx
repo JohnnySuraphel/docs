@@ -27,6 +27,8 @@ To go ahead we will need to update RAAD with running the following command `sudo
 ### Retrive Remote Backup
 1. Get Facility uuid. To do that run the command `mysql -u root -p'<password>' -D openmrs --port=3307 --host=0.0.0.0 -e "SELECT property_value FROM global_property WHERE property='facility.uuid'"`. You will get a result similiar to the following:
                 
+                - Note: Remote backup need to have run atleast once for Facility UUID to be setup. 
+
                 `7d9fb5e2-2850-4e84-ad17-6ee50a3f58e6`
 
 2. Retrive the backup file with the following command:
